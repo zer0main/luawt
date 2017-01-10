@@ -1,4 +1,5 @@
 local luawt = require 'luawt'
+local test = require 'luawt.test'
 
 local code = [[
     local app, env = ...
@@ -19,9 +20,7 @@ local code = [[
     end)
 ]]
 
-local server = luawt.WServer({
-    code = code,
-    port = 5678,
-})
+local wt_config = test.baseConfig()
+local server = test.createServer(code, port, wt_config)
 
 server:start()
