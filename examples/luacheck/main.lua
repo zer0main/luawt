@@ -20,6 +20,7 @@ local code = [[
     end)
 ]]
 
+local port = 12345
 local wt_config = test.baseConfig()
 local server = test.createServer(code, port, wt_config)
 
