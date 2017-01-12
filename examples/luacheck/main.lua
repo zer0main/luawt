@@ -1,4 +1,3 @@
-local luawt = require 'luawt'
 local test = require 'luawt.test'
 
 local code = [[
@@ -13,7 +12,11 @@ local code = [[
     button:clicked():connect(function()
         local c = luacheck.check_strings({textarea:text()})
         if c.fatals + c.errors + c.warnings > 0 then
-            result:setText("Errors!")
+            local error_msg = ''
+            for i = 1, #c[1] do
+                error_msg = error_msg .. luacheck.get_message(c[1][i]) .. '\n'
+            end
+            result:setText("\nErrors: \n" .. error_msg)
         else
             result:setText("No errors")
         end
