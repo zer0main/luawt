@@ -23,8 +23,10 @@ local code = [[
     end)
 ]]
 
+local ip = '0.0.0.0'
 local port = 12345
 local wt_config = test.baseConfig()
-local server = test.createServer(code, port, wt_config)
+local server = test.createServer(code, ip, port, wt_config)
 
 server:start()
+server:waitForShutdown()
